@@ -45,6 +45,30 @@
   pointer-events: none;
 }
 
+.card-manager {
+  margin-bottom: 20px;
+
+  .card-body {
+    display:flex;
+    cursor: auto;
+
+    .card-image {
+      flex: 1;
+    }
+
+    .card-content {
+      flex: 3;
+      padding: 15px;
+    }
+
+    dt,
+    dd {
+      display: inline;
+      margin: 0;
+    }
+  }
+}
+
 $borderWidth: 10px;
 $height: 25%;
 $width: 15%;

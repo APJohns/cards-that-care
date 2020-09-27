@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './card.scss';
 
 class Card extends React.Component {
   static propTypes = {
     card: PropTypes.shape({
       fileName: PropTypes.string
     }),
-    cardID: PropTypes.string,
+    cardKey: PropTypes.string,
     isSelected: PropTypes.bool,
-    addCard: PropTypes.func,
-    removeCard: PropTypes.func
+    addToCart: PropTypes.func,
+    removeFromCart: PropTypes.func
   };
 
   handleCheck = e => {
     e.currentTarget.checked ?
-      this.props.addCard(this.props.cardID)
-      : this.props.removeCard(this.props.cardID);
+      this.props.addToCart(this.props.cardKey)
+      : this.props.removeFromCart(this.props.cardKey);
   }
 
   render() {

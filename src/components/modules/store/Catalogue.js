@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './catalogue.scss';
 import Card from './Card';
 
 class Catalogue extends React.Component {
   static propTypes = {
     cards: PropTypes.object,
     selectedCards: PropTypes.object,
-    addCard: PropTypes.func,
-    removeCard: PropTypes.func,
+    addToCart: PropTypes.func,
+    removeFromCart: PropTypes.func,
     history: PropTypes.object
   };
 
@@ -30,9 +29,9 @@ class Catalogue extends React.Component {
           {Object.keys(this.props.cards).map((key, i) => (
             <Card
               key={key}
-              addCard={this.props.addCard}
-              removeCard={this.props.removeCard}
-              cardID={key}
+              addToCart={this.props.addToCart}
+              removeFromCart={this.props.removeFromCart}
+              cardKey={key}
               isSelected={this.isSelected(key)}
               {...this.props.cards[key]} />
           ))}

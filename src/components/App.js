@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Catalogue from './modules/Catalogue';
-import Admin from './modules/Admin';
+import Catalogue from './modules/store/Catalogue';
+import Admin from './modules/admin/Admin';
 import base from '../base';
-import Checkout from './modules/Checkout';
+import Checkout from './modules/store/Checkout';
 
 class App extends React.Component {
   static propTypes = {
@@ -34,36 +34,56 @@ class App extends React.Component {
     base.removeBinding(this.ref);
   }
 
-  addCard = cardKey => {
+  addToCart = cardKey => {
     const selectedCards = {...this.state.selectedCards};
     selectedCards[cardKey] = this.state.cards[cardKey];
     this.setState({selectedCards});
     localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
   }
 
-  removeCard = cardKey => {
+  removeFromCart = cardKey => {
     const selectedCards = {...this.state.selectedCards};
     delete selectedCards[cardKey];
     this.setState({selectedCards});
     localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
   }
 
+  updateCard = (key, card) => {
+    console.log(key, card);
+    const cards = {...this.state.cards};
+    Object.keys(card).forEach(property =>{
+      cards[key][property] = card[property];
+    });
+    this.setState({cards});
+  }
+
   render() {
     return (
-      <div className="container-fluid">
-        <header className="row">
-          <div className="col">
-            <h1>Cards that Care</h1>
-          </div>
-        </header>
-        <main className="row">
-          <BrowserRouter>
+      <BrowserRouter>
+        <div className="container-fluid">
+          <header className="row">
+            <div className="col">
+              <h1>Cards that Care</h1>
+              <nav className="row nav-primary">
+                <div className="col-auto">
+                  <Link to="/cards/catalogue">Catalogue</Link>
+                </div>
+                <div className="col-auto">
+                  <Link to="/cards/checkout">Cart</Link>
+                </div>
+                <div className="col-auto">
+                  <Link to="/admin">Admin</Link>
+                </div>
+              </nav>
+            </div>
+          </header>
+          <main className="row">
             <Switch>
               <Route path="/cards/catalogue">
                 <Catalogue
                   cards={this.state.cards}
-                  addCard={this.addCard}
-                  removeCard={this.removeCard}
+                  addToCart={this.addToCart}
+                  removeFromCart={this.removeFromCart}
                   selectedCards={this.state.selectedCards} />
               </Route>
 
@@ -72,14 +92,16 @@ class App extends React.Component {
               </Route>
 
               <Route path="/admin">
-                <Admin cards={this.state.cards} />
+                <Admin
+                  cards={this.state.cards}
+                  updateCard={this.updateCard} />
               </Route>
 
               <Redirect exact from="/" to="cards/catalogue" />
             </Switch>
-          </BrowserRouter>
-        </main>
-      </div>
+          </main>
+        </div>
+      </BrowserRouter>
     );
   }
 }
