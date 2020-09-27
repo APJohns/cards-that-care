@@ -4,6 +4,12 @@
       opacity: 0.4;
     }
   }
+
+  input:focus {
+    & ~ .card-body {
+      outline: 3px solid $focus-color;
+    }
+  }
 }
 
 .card-overlay {
@@ -26,8 +32,24 @@
 }
 
 .card-image {
-  display: block;
-  width: 100%;
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.card-price {
+  position: absolute;
+  background: $accent-color;
+  color: white;
+  border-radius: 3px;
+  padding: 2px 10px;
+  top: -10px;
+  left: -10px;
+  transform: rotate(-25deg);
+  z-index: 10;
 }
 
 .card-checkbox {
@@ -42,7 +64,11 @@
   pointer-events: none;
 }
 
-.card-manager {
+.card-content {
+  padding: 10px;
+}
+
+.card-horizontal {
   margin-bottom: 20px;
 
   .card-body {

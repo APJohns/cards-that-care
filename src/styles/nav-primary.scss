@@ -1,0 +1,10 @@
+.nav-primary {
+  position: sticky;
+  top: 0;
+  border-bottom: 2px solid $accent-color;
+  padding: 10px 0;
+  font-size: $font-size-large;
+  text-align: right;
+  background: #fff;
+  z-index: 100;
+}

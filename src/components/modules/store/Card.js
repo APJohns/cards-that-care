@@ -35,20 +35,27 @@ class Card extends React.Component {
               onChange={this.handleCheck} />
             <span className="sr-only">Label</span>
             <div className="card-body">
-              <div className="card-overlay">
-                <div className="checkmark"></div>
+              <div className="card-price">
+                {this.props.price}
               </div>
-              <img
-                className="card-image"
-                src={`/assets/cards/${this.props.fileName}`}
-                alt={this.props.alt}
-                loading="lazy" />
+              <div className="card-image">
+                <div className="card-overlay">
+                  <div className="checkmark"></div>
+                </div>
+                <img
+                  src={`/assets/cards/${this.props.fileName}`}
+                  alt={this.props.alt}
+                  loading="lazy" />
+              </div>
               <div className="card-content">
-                <p>{this.props.price}</p>
                 {this.props.tags &&
-                  <ul className="tags">
+                  <ul className="tag-list">
                     {this.props.tags.map((tag, i) =>(
-                      <li key={`tag-${this.props.cardKey}-${i}`}>{tag}</li>
+                      <li
+                        key={`tag-${this.props.cardKey}-${i}`}
+                        className="tag">
+                        {tag}
+                      </li>
                     ))}
                   </ul>
                 }

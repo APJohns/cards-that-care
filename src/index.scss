@@ -1,8 +1,15 @@
 @import './styles//variables';
+@import './styles/typography';
 @import './styles/nav-primary';
 @import './styles/cards';
+@import './styles/tags';
 
-body {
+body, html {
   font-family: 'Poppins', sans-serif;
+  font-size: $font-size-body;
   margin: 0;
+}
+
+*:focus {
+  outline: 2px solid $focus-color;
 }

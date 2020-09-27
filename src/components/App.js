@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Catalogue from './modules/store/Catalogue';
 import Admin from './modules/admin/Admin';
 import base from '../base';
-import Checkout from './modules/store/Checkout';
+import Cart from './modules/store/Cart';
 
 class App extends React.Component {
   static propTypes = {
@@ -78,22 +78,26 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="container-fluid">
           <header className="row">
-            <div className="col">
+            <div className="col position-relative">
               <h1>Cards that Care</h1>
-              <button onClick={this.genCards}>Generate Cards</button>
-              <nav className="row nav-primary">
-                <div className="col-auto">
-                  <Link to="/cards/catalogue">Catalogue</Link>
-                </div>
-                <div className="col-auto">
-                  <Link to="/cards/checkout">Cart</Link>
-                </div>
-                <div className="col-auto">
-                  <Link to="/admin">Admin</Link>
-                </div>
-              </nav>
+              {/* <button onClick={this.genCards}>Generate Cards</button> */}
             </div>
           </header>
+          <nav className="row nav-primary">
+            <div className="col-auto">
+              <Link to="/cards/catalogue">Catalogue</Link>
+            </div>
+            <div className="col-auto">
+              <Link to="/admin">Admin</Link>
+            </div>
+            <div className="col-auto ml-auto">
+              <Link to="/cards/cart">Cart{
+              (this.state.selectedCards
+                && Object.keys(this.state.selectedCards).length > 0)
+                && `(${Object.keys(this.state.selectedCards).length})`
+              }</Link>
+            </div>
+          </nav>
           <main className="row">
             <Switch>
               <Route path="/cards/catalogue">
@@ -104,8 +108,8 @@ class App extends React.Component {
                   selectedCards={this.state.selectedCards} />
               </Route>
 
-              <Route path="/cards/checkout">
-                <Checkout selectedCards={this.state.selectedCards}/>
+              <Route path="/cards/cart">
+                <Cart selectedCards={this.state.selectedCards}/>
               </Route>
 
               <Route path="/admin">

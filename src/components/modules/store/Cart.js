@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartItem from './CartItem';
 
-class Checkout extends React.Component {
+class Cart extends React.Component {
   static propTypes = {
     selectedCards: PropTypes.object
   };
@@ -9,12 +10,12 @@ class Checkout extends React.Component {
   render() {
     return (
       <section className="col">
-        <h2>Checkout</h2>
+        <h2>Cart</h2>
         {this.props.selectedCards && Object.keys(this.props.selectedCards).length > 0 ?
           <>
             <ul>
               {Object.keys(this.props.selectedCards).map(key => (
-                <li key={key}>{key}</li>
+                <CartItem key={key} {...this.props.selectedCards[key]}>{key}</CartItem>
               ))}
             </ul>
             <div className="form-group">
@@ -36,4 +37,4 @@ class Checkout extends React.Component {
   }
 }
 
-export default Checkout;
+export default Cart;

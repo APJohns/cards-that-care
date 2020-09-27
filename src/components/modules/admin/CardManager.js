@@ -71,7 +71,7 @@ class CardManager extends React.Component {
   render() {
     return (
       <div className="col-12 col-lg-6">
-        <div className="card card-manager">
+        <div className="card card-horizontal">
           <div className="card-body">
             <img
               className="card-image"
