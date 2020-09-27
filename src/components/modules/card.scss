@@ -1,0 +1,60 @@
+.card {
+  border: 0;
+  border-radius: 0;
+
+  input:checked {
+    & ~ .card-body .card-overlay {
+      opacity: 0.4;
+    }
+  }
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-body {
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+}
+
+.card-image {
+  display: block;
+  width: 100%;
+}
+
+.card-checkbox {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  clip: rect(0,0,0,0);
+  overflow: hidden;
+  opacity: 0;
+  -webkit-appearance: none;
+  pointer-events: none;
+}
+
+$borderWidth: 10px;
+$height: 25%;
+$width: 15%;
+$borderColor: #fff;
+
+.checkmark {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: $height;
+  width: $width;
+  border-bottom: $borderWidth solid $borderColor;
+  border-right: $borderWidth solid $borderColor;
+}
