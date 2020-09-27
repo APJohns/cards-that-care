@@ -18,9 +18,15 @@ class Card extends React.Component {
       : this.props.removeFromCart(this.props.cardKey);
   }
 
+  getPrice = e => {
+    if (this.props.priceCategory === 'Custom') {
+      return this.props.price;
+    }
+  }
+
   render() {
     return (
-      <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+      <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 my-3">
         <div className="card">
           <label className="mb-0">
             <input
@@ -35,7 +41,18 @@ class Card extends React.Component {
               <img
                 className="card-image"
                 src={`/assets/cards/${this.props.fileName}`}
-                alt={this.props.alt} />
+                alt={this.props.alt}
+                loading="lazy" />
+              <div className="card-content">
+                <p>{this.props.price}</p>
+                {this.props.tags &&
+                  <ul className="tags">
+                    {this.props.tags.map((tag, i) =>(
+                      <li key={`tag-${this.props.cardKey}-${i}`}>{tag}</li>
+                    ))}
+                  </ul>
+                }
+              </div>
             </div>
           </label>
         </div>

@@ -3,10 +3,6 @@ import CardManager from './CardManager';
 
 class Admin extends React.Component {
 
-  state = {
-    tagList: ['Birthday', 'Christmas', 'Anniversary']
-  }
-
   render() {
     return (
       <section className="col">
@@ -16,7 +12,8 @@ class Admin extends React.Component {
             <CardManager
               key={key}
               cardKey={key}
-              tagList={this.state.tagList}
+              tagList={this.props.tagList}
+              priceList={this.props.priceList}
               index={i}
               updateCard={this.props.updateCard}
               {...this.props.cards[key]} />

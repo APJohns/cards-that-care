@@ -13,7 +13,11 @@ class App extends React.Component {
 
   state = {
     cards: {},
-    selectCards: {}
+    selectCards: {},
+    tagList: ['Birthday', 'Christmas', 'Anniversary'],
+    priceList: {
+      'Standard': '$5'
+    }
   }
 
   component
@@ -49,11 +53,23 @@ class App extends React.Component {
   }
 
   updateCard = (key, card) => {
-    console.log(key, card);
     const cards = {...this.state.cards};
     Object.keys(card).forEach(property =>{
       cards[key][property] = card[property];
     });
+    this.setState({cards});
+  }
+
+  genCards = () => {
+    const cards = {...this.state.cards};
+    for (let i = 1; i <= 96; i++) {
+      cards[`card${i}`] = {
+        fileName: `card${i}.jpeg`,
+        tags: [],
+        priceCategory: 'Standard',
+        price: '$5'
+      };
+    }
     this.setState({cards});
   }
 
@@ -64,6 +80,7 @@ class App extends React.Component {
           <header className="row">
             <div className="col">
               <h1>Cards that Care</h1>
+              <button onClick={this.genCards}>Generate Cards</button>
               <nav className="row nav-primary">
                 <div className="col-auto">
                   <Link to="/cards/catalogue">Catalogue</Link>
@@ -94,7 +111,9 @@ class App extends React.Component {
               <Route path="/admin">
                 <Admin
                   cards={this.state.cards}
-                  updateCard={this.updateCard} />
+                  updateCard={this.updateCard}
+                  tagList={this.state.tagList}
+                  priceList={this.state.priceList} />
               </Route>
 
               <Redirect exact from="/" to="cards/catalogue" />

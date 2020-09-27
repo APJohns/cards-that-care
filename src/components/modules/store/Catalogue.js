@@ -26,15 +26,15 @@ class Catalogue extends React.Component {
         <h2>Catalogue</h2>
         <form onSubmit={this.selectCards}>
           <div className="row">
-          {Object.keys(this.props.cards).map((key, i) => (
-            <Card
-              key={key}
-              addToCart={this.props.addToCart}
-              removeFromCart={this.props.removeFromCart}
-              cardKey={key}
-              isSelected={this.isSelected(key)}
-              {...this.props.cards[key]} />
-          ))}
+            {Object.keys(this.props.cards).map((key, i) => (
+              <Card
+                key={key}
+                addToCart={this.props.addToCart}
+                removeFromCart={this.props.removeFromCart}
+                cardKey={key}
+                isSelected={this.isSelected(key)}
+                {...this.props.cards[key]} />
+            ))}
           </div>
           <Link to="/cards/checkout">Checkout</Link>
         </form>

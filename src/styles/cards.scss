@@ -1,7 +1,4 @@
 .card {
-  border: 0;
-  border-radius: 0;
-
   input:checked {
     & ~ .card-body .card-overlay {
       opacity: 0.4;

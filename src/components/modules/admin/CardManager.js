@@ -4,13 +4,17 @@ class CardManager extends React.Component {
 
   state = {
     fileName: '',
-    tags: []
+    tags: [],
+    price: '',
+    priceCategory: ''
   }
 
   componentDidMount() {
     this.setState({
       fileName: this.props.fileName,
-      tags: this.props.tags || []
+      tags: this.props.tags || [],
+      priceCategory: this.props.priceCategory || 'Standard',
+      price: this.props.price,
     });
   }
 
@@ -18,7 +22,7 @@ class CardManager extends React.Component {
     this.setState({fileName: e.target.value})
     this.props.updateCard(
       this.props.cardKey,
-      { fileName: e.target.value }
+      this.state
     )
   }
 
@@ -32,9 +36,36 @@ class CardManager extends React.Component {
     this.setState({tags}, () => {
       this.props.updateCard(
         this.props.cardKey,
-        { tags: this.state.tags }
+        this.state
       )
-    })
+    });
+  }
+
+  handlePriceCategory = e => {
+    if (e.target.value === 'Standard') {
+      this.setState({
+        priceCategory: 'Standard',
+        price: this.props.priceList[this.props.priceCategory]
+      });
+    } else if (e.target.value === 'Custom') {
+      this.setState({
+        priceCategory: 'Custom'
+      }, () => {
+        this.props.updateCard(
+          this.props.cardKey,
+          this.state
+        )
+      });
+    }
+  }
+
+  handlePrice = e => {
+    this.setState({price: e.target.value}, () => {
+      this.props.updateCard(
+        this.props.cardKey,
+        this.state
+      )
+    });
   }
 
   render() {
@@ -47,12 +78,14 @@ class CardManager extends React.Component {
               src={`/assets/cards/${this.props.fileName}`}
               alt={this.props.alt} />
             <div className="card-content">
+
               <dl>
                 <dt>ID: </dt>
                 <dd>{this.props.cardKey}</dd>
               </dl>
+
               <div className="form-group">
-                <label htmlFor={'fileName' + this.props.index} >File Name</label>
+                <label htmlFor={'fileName' + this.props.index}>File Name</label>
                 <input
                   type="text"
                   id={'fileName' + this.props.index}
@@ -60,6 +93,32 @@ class CardManager extends React.Component {
                   value={this.state.fileName}
                   onChange={this.handleFileName} />
               </div>
+
+              <div className="row form-group">
+                <div className="col-6">
+                  <label htmlFor={'priceCategory' + this.props.index}>Price Category</label>
+                  <select
+                    type="text"
+                    id={'priceCategory' + this.props.index}
+                    className="form-control"
+                    value={this.state.priceCategory}
+                    onChange={this.handlePriceCategory}>
+                    <option>Standard</option>
+                    <option>Custom</option>
+                  </select>
+                </div>
+                <div className="col-6">
+                  <label htmlFor={'price' + this.props.index}>Price</label>
+                  <input
+                    type="text"
+                    id={'price' + this.props.index}
+                    className="form-control"
+                    value={this.state.price}
+                    onChange={this.handlePrice}
+                    readOnly={this.state.priceCategory !== 'Custom'} />
+                </div>
+              </div>
+
               <fieldset className="form-group">
                 <div className="row">
                   <legend className="col-form-label col-12 pt-0">Tags</legend>
@@ -83,6 +142,7 @@ class CardManager extends React.Component {
                   ))}
                 </div>
               </fieldset>
+
             </div>
           </div>
         </div>
