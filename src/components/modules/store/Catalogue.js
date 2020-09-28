@@ -12,13 +12,13 @@ class Catalogue extends React.Component {
   };
 
   isSelected(key) {
-    return this.props.selectedCards[key] ? true : false;
+    return this.props.selectedCards && this.props.selectedCards[key] ? true : false;
   }
 
   render() {
     return (
       <section className="col">
-        <h2>Catalogue</h2>
+        <h1 className="mt-3">Catalogue</h1>
         <div className="row">
           {Object.keys(this.props.cards).map((key, i) => (
             <Card

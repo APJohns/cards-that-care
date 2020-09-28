@@ -33,10 +33,9 @@ class Card extends React.Component {
               type="checkbox" className="card-checkbox"
               checked={this.props.isSelected}
               onChange={this.handleCheck} />
-            <span className="sr-only">Label</span>
-            <div className="card-body">
+            <div className="card-body cursor-pointer">
               <div className="card-price">
-                {this.props.price}
+                ${this.props.price}
               </div>
               <div className="card-image">
                 <div className="card-overlay">
@@ -47,8 +46,8 @@ class Card extends React.Component {
                   alt={this.props.alt}
                   loading="lazy" />
               </div>
-              <div className="card-content">
-                {this.props.tags &&
+              {this.props.tags &&
+                <div className="card-content">
                   <ul className="tag-list">
                     {this.props.tags.map((tag, i) =>(
                       <li
@@ -58,8 +57,8 @@ class Card extends React.Component {
                       </li>
                     ))}
                   </ul>
-                }
-              </div>
+                </div>
+              }
             </div>
           </label>
         </div>

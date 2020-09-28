@@ -2,12 +2,21 @@ $electric: #07b57a;
 $lake: #0b63e9;
 $autumn: #f3ac06;
 $eggplant: #6c26ff;
+$almostBlack: #06002b;
 
 $accent-color: $eggplant;
 $secondary-color: $lake;
 $focus-color: $electric;
 $link-color-primary: $lake;
+$font-color-primary: $almostBlack;
 
-$font-size-large: 18px;
-$font-size-body: 16px;
-$font-size-small: 14px;
+$font-size-large: 1.25rem;
+$font-size-body: 1rem;
+$font-size-small: 0.75rem;
+
+$font-weight-semi-bold: 500;
+$font-weight-bold: 600;
+
+$font-size-h1: 2rem;
+$font-size-h2: 1.5rem;
+$font-size-h3: 1rem;

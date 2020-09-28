@@ -1,4 +1,5 @@
 @import './styles//variables';
+@import './styles/utilities';
 @import './styles/typography';
 @import './styles/nav-primary';
 @import './styles/cards';
@@ -7,9 +8,47 @@
 body, html {
   font-family: 'Poppins', sans-serif;
   font-size: $font-size-body;
+  color: $font-color-primary;
   margin: 0;
 }
 
 *:focus {
   outline: 2px solid $focus-color;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+dt,
+dd {
+  display: inline-block;
+  margin: 0;
+  font-weight: 400;
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+}
+
+.logo {
+  font-size: $font-size-h1;
 }

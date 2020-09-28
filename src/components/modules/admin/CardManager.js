@@ -43,9 +43,10 @@ class CardManager extends React.Component {
 
   handlePriceCategory = e => {
     if (e.target.value === 'Standard') {
+      console.log(this.props.priceList, this.props.priceCategory);
       this.setState({
         priceCategory: 'Standard',
-        price: this.props.priceList[this.props.priceCategory]
+        price: this.props.priceList['Standard']
       });
     } else if (e.target.value === 'Custom') {
       this.setState({
@@ -113,7 +114,7 @@ class CardManager extends React.Component {
                     type="text"
                     id={'price' + this.props.index}
                     className="form-control"
-                    value={this.state.price}
+                    value={'$'+ this.state.price}
                     onChange={this.handlePrice}
                     readOnly={this.state.priceCategory !== 'Custom'} />
                 </div>

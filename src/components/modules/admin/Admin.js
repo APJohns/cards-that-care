@@ -6,7 +6,7 @@ class Admin extends React.Component {
   render() {
     return (
       <section className="col">
-        <h2>Admin</h2>
+        <h1>Admin</h1>
         <div className="row">
           {Object.keys(this.props.cards).map((key, i) => (
             <CardManager

@@ -16,7 +16,7 @@ class App extends React.Component {
     selectCards: {},
     tagList: ['Birthday', 'Christmas', 'Anniversary'],
     priceList: {
-      'Standard': '$5'
+      'Standard': 5
     }
   }
 
@@ -67,7 +67,7 @@ class App extends React.Component {
         fileName: `card${i}.jpeg`,
         tags: [],
         priceCategory: 'Standard',
-        price: '$5'
+        price: 5
       };
     }
     this.setState({cards});
@@ -76,10 +76,10 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container-fluid">
+        <div className="container-fluid body-container">
           <header className="row">
             <div className="col position-relative">
-              <h1>Cards that Care</h1>
+              <div className="logo">Cards that Care</div>
               {/* <button onClick={this.genCards}>Generate Cards</button> */}
             </div>
           </header>
@@ -98,7 +98,7 @@ class App extends React.Component {
               }</Link>
             </div>
           </nav>
-          <main className="row">
+          <main className="row flex-fill">
             <Switch>
               <Route path="/cards/catalogue">
                 <Catalogue
