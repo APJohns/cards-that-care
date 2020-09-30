@@ -109,7 +109,9 @@ class App extends React.Component {
               </Route>
 
               <Route path="/cards/cart">
-                <Cart selectedCards={this.state.selectedCards}/>
+                <Cart
+                  selectedCards={this.state.selectedCards}
+                  removeFromCart={this.removeFromCart} />
               </Route>
 
               <Route path="/admin">

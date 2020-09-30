@@ -5,7 +5,7 @@ class Admin extends React.Component {
 
   render() {
     return (
-      <section className="col">
+      <section className="col mt-3">
         <h1>Admin</h1>
         <div className="row">
           {Object.keys(this.props.cards).map((key, i) => (

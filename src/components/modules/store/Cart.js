@@ -5,7 +5,8 @@ import './cart.scss';
 
 class Cart extends React.Component {
   static propTypes = {
-    selectedCards: PropTypes.object
+    selectedCards: PropTypes.object,
+    removeFromCart: PropTypes.func
   };
 
   state = {
@@ -24,7 +25,7 @@ class Cart extends React.Component {
   }
 
   handleDonation = e => {
-    if (/^[\d.]+$/.test(e.target.value) || e.target.value === '') {
+    if (/^(\s*|[\d.]+)$/.test(e.target.value)) {
       this.setState({donation: e.target.value});
     }
   }
@@ -38,11 +39,20 @@ class Cart extends React.Component {
               <h1>Cart</h1>
               <ul className="row">
                 {Object.keys(this.props.selectedCards).map(key => (
-                  <CartItem key={key} {...this.props.selectedCards[key]} />
+                  <CartItem
+                    key={key}
+                    cardKey={key}
+                    removeFromCart={this.props.removeFromCart}
+                    {...this.props.selectedCards[key]} />
                 ))}
               </ul>
               <h2>Info</h2>
-              <p>You will not be charged on completion of your order. Online payment is coming soon. In the meantime, your order will be sent to us and we will be in touch about payment.</p>
+              <p>You will not be charged on completion of your order. Online payment is coming soon. In the meantime, your order information will be sent to us and payment options are detailed below.</p>
+              <h3>Payment Options</h3>
+              <ul className="list">
+                <li>Donate directly to the <a href="https://donate.pmc.org/">Pan-Mass Challenge using ID SJ0126</a>. Mention Cards that Care in the note to rider.</li>
+                <li>Venmo, include username in notes and we'll send you a payment request.</li>
+              </ul>
               <div className="row">
                 <div className="form-group col-md-6">
                   <label htmlFor="name">Name</label>
@@ -54,13 +64,13 @@ class Cart extends React.Component {
                 </div>
                 <div className="form-group col-lg-6">
                   <label htmlFor="notes">Notes</label>
-                  <textarea id="notes" className="form-control" placeholder="I.e. Venmo username, or other preffered payment method." required />
+                  <textarea id="notes" className="form-control" placeholder="I.e. Venmo username, or other payment method." />
                 </div>
                 <div className="form-group col-md-6">
                   <label htmlFor="donation">Additional Donation</label>
                   <div className="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">$</div>
+                    <div className="input-group-prepend">
+                      <div className="input-group-text">$</div>
                     </div>
                     <input type="number" id="donation" className="form-control" value={this.state.donation} onChange={this.handleDonation} />
                   </div>
@@ -90,7 +100,7 @@ class Cart extends React.Component {
             </div>
           </div>
           :
-          <p>
+          <p className="mt-3">
             Looks like you haven't picked out any cards yet. Go back to the catalogue and find your favorites.
           </p>
         }

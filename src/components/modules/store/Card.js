@@ -25,42 +25,43 @@ class Card extends React.Component {
   }
 
   render() {
+    const addButton = <button type="button" className="card-action add" onClick={() => this.props.addToCart(this.props.cardKey)}>Add to Cart</button>
+
+    const removeButton = <button type="button" className="card-action remove" onClick={() => this.props.removeFromCart(this.props.cardKey)}>Remove</button>
+
     return (
       <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 my-3">
         <div className="card">
-          <label className="mb-0">
-            <input
-              type="checkbox" className="card-checkbox"
-              checked={this.props.isSelected}
-              onChange={this.handleCheck} />
-            <div className="card-body cursor-pointer">
-              <div className="card-price">
-                ${this.props.price}
-              </div>
-              <div className="card-image">
+          <div className="card-body">
+            <div className="card-price">
+              ${this.props.price}
+            </div>
+            <div className="card-image">
+              {this.props.isSelected &&
                 <div className="card-overlay">
                   <div className="checkmark"></div>
                 </div>
-                <img
-                  src={`/assets/cards/${this.props.fileName}`}
-                  alt={this.props.alt}
-                  loading="lazy" />
-              </div>
+              }
+              <img
+                src={`/assets/cards/${this.props.fileName}`}
+                alt={this.props.alt}
+                loading="lazy" />
+            </div>
+            <div className="card-content">
               {this.props.tags &&
-                <div className="card-content">
-                  <ul className="tag-list">
-                    {this.props.tags.map((tag, i) =>(
-                      <li
-                        key={`tag-${this.props.cardKey}-${i}`}
-                        className="tag">
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="tag-list">
+                  {this.props.tags.map((tag, i) =>(
+                    <li
+                      key={`tag-${this.props.cardKey}-${i}`}
+                      className="tag">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
               }
             </div>
-          </label>
+            { this.props.isSelected ? removeButton : addButton }
+          </div>
         </div>
       </div>
     );

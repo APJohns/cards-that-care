@@ -1,24 +1,10 @@
-.card {
-  input:checked {
-    & ~ .card-body .card-overlay {
-      opacity: 0.4;
-    }
-  }
-
-  input:focus {
-    & ~ .card-body {
-      outline: 3px solid $focus-color;
-    }
-  }
-}
-
 .card-overlay {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: 0;
+  opacity: 0.4;
   background: black;
   display: flex;
   align-items: center;
@@ -63,7 +49,22 @@
 
 .card-content {
   position: relative;
-  padding: 10px;
+}
+
+.card-action {
+  display: block;
+  border: 0;
+  padding: 3px 0 1px;
+  width: 100%;
+
+  &:focus {
+    outline: 2px solid $focus-color;
+  }
+
+  &.remove {
+    background: $feedback-color-danger;
+    color: $white;
+  }
 }
 
 .card-horizontal {

@@ -19,6 +19,7 @@ class Catalogue extends React.Component {
     return (
       <section className="col">
         <h1 className="mt-3">Catalogue</h1>
+        <p>All profits made before October 1st go to the Pan-Mass Challenge. After October 1st, profits will be donated directly to Dana-Farber.</p>
         <div className="row">
           {Object.keys(this.props.cards).map((key, i) => (
             <Card
