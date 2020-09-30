@@ -21,13 +21,21 @@ class Catalogue extends React.Component {
     numPages: 1
   }
 
+  componentDidMount() {
+    this.getFirstPage();
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps) {
-      this.setState({
-        cardsPage: Object.keys(this.props.cards).slice(this.state.startIndex, this.state.endIndex),
-        numPages: Math.ceil(Object.keys(this.props.cards).length / this.state.pageSize)
-      });
+      this.getFirstPage();
     }
+  }
+
+  getFirstPage = () => {
+    this.setState({
+      cardsPage: Object.keys(this.props.cards).slice(this.state.startIndex, this.state.endIndex),
+      numPages: Math.ceil(Object.keys(this.props.cards).length / this.state.pageSize)
+    });
   }
 
   isSelected(key) {
